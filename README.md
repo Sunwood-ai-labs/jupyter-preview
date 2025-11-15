@@ -14,6 +14,8 @@ A lightweight, client-side web application for previewing Jupyter Notebook (.ipy
 
 ## Demo
 
+![alt text](image.png)
+
 🔗 **[Live Demo](https://sunwood-ai-labs.github.io/jupyter-preview/)**
 
 Try the sample notebook: [examples/sample.ipynb](examples/sample.ipynb)
