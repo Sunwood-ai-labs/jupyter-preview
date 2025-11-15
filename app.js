@@ -14,7 +14,13 @@ marked.setOptions({
 });
 
 // Event listeners
-uploadArea.addEventListener('click', () => fileInput.click());
+uploadArea.addEventListener('click', (e) => {
+    // Prevent double popup when clicking the label
+    if (e.target.closest('.file-label')) {
+        return;
+    }
+    fileInput.click();
+});
 fileInput.addEventListener('change', handleFileSelect);
 
 // Drag and drop handlers
