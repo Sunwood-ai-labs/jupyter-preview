@@ -1,0 +1,336 @@
+:root {
+    --primary-color: #f37726;
+    --secondary-color: #4a4a4a;
+    --background: #ffffff;
+    --surface: #f8f9fa;
+    --border: #e1e4e8;
+    --text-primary: #24292e;
+    --text-secondary: #586069;
+    --code-bg: #f6f8fa;
+    --success: #28a745;
+    --error: #d73a49;
+    --markdown-bg: #ffffff;
+    --cell-border: #cfcfcf;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--surface);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.upload-area {
+    border: 3px dashed var(--border);
+    border-radius: 12px;
+    padding: 4rem 2rem;
+    text-align: center;
+    background: var(--background);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.upload-area.dragover {
+    border-color: var(--primary-color);
+    background-color: rgba(243, 119, 38, 0.05);
+    transform: scale(1.02);
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.upload-icon {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.upload-text {
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.upload-subtext {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.file-label {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.file-label:hover {
+    background-color: #e56717;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(243, 119, 38, 0.3);
+}
+
+.notebook-content {
+    background: var(--background);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.notebook-content.hidden {
+    display: none;
+}
+
+.cell {
+    margin-bottom: 1rem;
+    border-left: 3px solid transparent;
+    padding-left: 1rem;
+}
+
+.cell.code-cell {
+    border-left-color: #4a90e2;
+}
+
+.cell.markdown-cell {
+    border-left-color: #50c878;
+}
+
+.cell-input {
+    margin-bottom: 0.5rem;
+}
+
+.cell-header {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-family: 'Courier New', monospace;
+}
+
+.code-block {
+    background-color: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 0.5rem 0;
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: 'Courier New', Monaco, monospace;
+    font-size: 0.9rem;
+}
+
+.code-block code {
+    background: none !important;
+    padding: 0 !important;
+}
+
+.cell-output {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+}
+
+.output-text {
+    font-family: 'Courier New', Monaco, monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.output-error {
+    color: var(--error);
+    background-color: #ffeef0;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid var(--error);
+}
+
+.output-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 0.5rem 0;
+}
+
+.output-html {
+    overflow-x: auto;
+}
+
+.markdown-content {
+    line-height: 1.8;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.markdown-content h1 {
+    font-size: 2rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.markdown-content h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+}
+
+.markdown-content h3 {
+    font-size: 1.25rem;
+}
+
+.markdown-content p {
+    margin-bottom: 1rem;
+}
+
+.markdown-content code {
+    background-color: var(--code-bg);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Courier New', Monaco, monospace;
+    font-size: 0.9em;
+}
+
+.markdown-content pre code {
+    background: none;
+    padding: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.markdown-content blockquote {
+    border-left: 4px solid var(--border);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.markdown-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+    border: 1px solid var(--border);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.markdown-content th {
+    background-color: var(--surface);
+    font-weight: 600;
+}
+
+.error-message {
+    background-color: #ffeef0;
+    color: var(--error);
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 4px solid var(--error);
+    margin-top: 1rem;
+}
+
+.error-message.hidden {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .upload-area {
+        padding: 2rem 1rem;
+    }
+
+    .notebook-content {
+        padding: 1rem;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cell {
+    animation: fadeIn 0.3s ease;
+}
