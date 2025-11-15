@@ -3,7 +3,7 @@ const uploadArea = document.getElementById('uploadArea');
 const fileInput = document.getElementById('fileInput');
 const notebookContent = document.getElementById('notebookContent');
 const errorMessage = document.getElementById('errorMessage');
-const ansi_up = new AnsiUp();
+let ansi_up;
 
 // Configure marked options
 marked.setOptions({
@@ -189,7 +189,7 @@ function createOutput(output) {
         const pre = document.createElement('pre');
         pre.className = 'output-text';
         const text = Array.isArray(output.text) ? output.text.join('') : output.text;
-        pre.innerHTML = ansi_up.ansi_to_html(text);
+        pre.innerHTML = ansi_up ? ansi_up.ansi_to_html(text) : text;
         outputDiv.appendChild(pre);
     } else if (output.output_type === 'execute_result' || output.output_type === 'display_data') {
         if (output.data) {
@@ -202,7 +202,7 @@ function createOutput(output) {
         const errorText = document.createElement('pre');
         errorText.className = 'output-text';
         const traceback = output.traceback ? output.traceback.join('\n') : '';
-        errorText.innerHTML = ansi_up.ansi_to_html(traceback);
+        errorText.innerHTML = ansi_up ? ansi_up.ansi_to_html(traceback) : traceback;
 
         errorDiv.appendChild(errorText);
         outputDiv.appendChild(errorDiv);
@@ -275,6 +275,13 @@ function hideError() {
 
 // Load from URL parameter
 window.addEventListener('DOMContentLoaded', () => {
+    // Initialize AnsiUp after DOM is loaded
+    if (typeof AnsiUp !== 'undefined') {
+        ansi_up = new AnsiUp();
+    } else {
+        console.error('AnsiUp library not loaded');
+    }
+
     const urlParams = new URLSearchParams(window.location.search);
     const notebookUrl = urlParams.get('url');
 
